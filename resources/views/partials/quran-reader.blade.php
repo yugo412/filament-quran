@@ -1,6 +1,7 @@
 <div
     x-data="{
         storageKey: 'filament-quran.reading-position',
+        restorePosition: @js(request()->route('number') === null),
         init() {
             this.$wire.$watch('surahNumber', () => this.savePosition())
             this.$wire.$watch('verseNumber', () => this.savePosition())
@@ -8,7 +9,7 @@
             try {
                 const position = JSON.parse(window.localStorage.getItem(this.storageKey) ?? 'null')
 
-                if (position?.surah && position?.verse) {
+                if (this.restorePosition && position?.surah && position?.verse) {
                     this.$wire.goTo(position.surah, position.verse)
                 }
             } catch (error) {
@@ -88,11 +89,16 @@
             <div class="fi-quran-widget__verses">
                 @foreach ($verses as $verse)
                     @if ($verse)
-                        <article class="fi-quran-widget__verse space-y-5">
+                        <article id="verse-{{ $verse['number'] }}" class="fi-quran-widget__verse space-y-5">
                             <div class="fi-quran-widget__arabic-row flex items-start justify-end gap-3">
-                                <span class="mt-2 inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-amber-600/50 text-sm tabular-nums text-amber-700 dark:border-amber-400/50 dark:text-amber-300">
+                                <a
+                                    href="#verse-{{ $verse['number'] }}"
+                                    class="fi-quran-widget__verse-anchor mt-2 inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-amber-600/50 text-sm tabular-nums text-amber-700 dark:border-amber-400/50 dark:text-amber-300"
+                                    aria-label="{{ __('filament-quran::quran.verse_link', ['number' => $verse['number']]) }}"
+                                    x-on:click.prevent="window.location.hash = 'verse-{{ $verse['number'] }}'"
+                                >
                                     {{ $verse['number'] }}
-                                </span>
+                                </a>
                                 <p class="fi-quran-widget__arabic min-w-0 text-right text-3xl leading-[2.1] text-gray-950 sm:text-4xl dark:text-white" dir="rtl">
                                     {{ $verse['arabic'] }}
                                 </p>

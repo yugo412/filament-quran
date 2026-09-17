@@ -25,8 +25,9 @@ trait InteractsWithQuran
 
     public ?string $error = null;
 
-    public function mount(): void
+    public function initializeQuran(int $surahNumber = 1): void
     {
+        $this->surahNumber = $surahNumber;
         $this->loadSurahOptions();
         $this->loadSurah();
     }
@@ -89,7 +90,12 @@ trait InteractsWithQuran
 
     public function isDisplayingAllVerses(): bool
     {
-        return config('filament-quran.widget.display_mode', 'single') === 'all';
+        return $this->getQuranDisplayMode() === 'all';
+    }
+
+    protected function getQuranDisplayMode(): string
+    {
+        return (string) config('filament-quran.page.display_mode', 'all');
     }
 
     public function previousVerse(): void

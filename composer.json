@@ -39,7 +39,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Yugo\\FilamentQuran\\FilamentQuranServiceProvider"
+                "Yugo\\FilamentQuran\\FilamentQuranServiceProvider",
+                "Yugo\\FilamentQuran\\FilamentQuranPanelProvider"
             ]
         }
     },

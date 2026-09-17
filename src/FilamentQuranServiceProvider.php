@@ -10,6 +10,7 @@ final class FilamentQuranServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/filament-quran.php', 'filament-quran');
 
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'filament-quran');
     }
 
     public function boot(): void
@@ -19,6 +20,5 @@ final class FilamentQuranServiceProvider extends ServiceProvider
         ], 'filament-quran-config');
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'filament-quran');
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'filament-quran');
     }
 }

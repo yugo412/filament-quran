@@ -1,3 +1,11 @@
+.fi-quran-public-page .fi-header {
+    justify-content: center;
+}
+
+.fi-quran-public-page .fi-header > div:first-child {
+    text-align: center;
+}
+
 .fi-quran-widget {
     display: flex;
     flex-direction: column;
@@ -57,6 +65,37 @@
     text-align: center;
 }
 
+.fi-quran-public__page-header {
+    align-items: center;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+}
+
+.fi-quran-public__page-header > .fi-header-heading {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.fi-quran-public__home-link {
+    align-items: center;
+    color: var(--primary-600);
+    display: inline-flex;
+    gap: 0.5rem;
+    justify-self: start;
+    min-height: 2.75rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.fi-quran-public__home-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.fi-quran-public__home-link:focus-visible {
+    outline: 2px solid var(--primary-600);
+    outline-offset: 2px;
+}
+
 .fi-quran-widget__surah-select {
     background-color: transparent;
     border: 0;
@@ -83,6 +122,24 @@
 .fi-quran-widget__verse + .fi-quran-widget__verse {
     border-top: 1px solid rgb(229 231 235);
     padding-top: 2rem;
+}
+
+.fi-quran-widget__verse {
+    scroll-margin-top: 1rem;
+}
+
+.fi-quran-widget__verse-anchor {
+    transition: background-color 150ms ease, color 150ms ease;
+}
+
+.fi-quran-widget__verse-anchor:hover,
+.fi-quran-widget__verse-anchor:focus-visible {
+    background-color: rgb(245 158 11 / 0.12);
+}
+
+.fi-quran-widget__verse-anchor:focus-visible {
+    outline: 2px solid var(--primary-600);
+    outline-offset: 2px;
 }
 
 .fi-quran-widget__verse-navigation {
@@ -159,6 +216,139 @@
 
 .dark .fi-quran-widget__attribution a {
     color: var(--primary-400);
+}
+
+.fi-quran-public__index {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+}
+
+.fi-quran-public__index-header {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.fi-quran-public__index-header .fi-quran-widget__attribution {
+    margin: 0;
+}
+
+.fi-quran-public__provider-switcher {
+    border-bottom: 1px solid rgb(229 231 235);
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.fi-quran-public__surah-card {
+    align-items: center;
+    background-color: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 1rem;
+    color: var(--gray-950);
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    min-height: 5.5rem;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    transition: border-color 150ms ease, background-color 150ms ease, transform 150ms ease;
+}
+
+.fi-quran-public__surah-card:hover {
+    background-color: var(--primary-50);
+    border-color: var(--primary-300);
+    transform: translateY(-1px);
+}
+
+.fi-quran-public__surah-card:focus-visible {
+    outline: 2px solid var(--primary-600);
+    outline-offset: 3px;
+}
+
+.fi-quran-public__surah-number {
+    color: var(--primary-600);
+    font-size: 1.25rem;
+    font-weight: 700;
+    min-width: 1.5rem;
+    text-align: center;
+}
+
+.fi-quran-public__surah-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+}
+
+.fi-quran-public__surah-latin-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.fi-quran-public__surah-meta {
+    color: var(--gray-500);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.fi-quran-public__surah-name {
+    color: var(--gray-600);
+    font-family: serif;
+    font-size: 1.5rem;
+    max-width: 5rem;
+    overflow-wrap: anywhere;
+    text-align: right;
+}
+
+.fi-quran-public__message {
+    color: var(--gray-500);
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.fi-quran-public__reader {
+    margin-inline: auto;
+    max-width: 72rem;
+}
+
+.dark .fi-quran-public__surah-card {
+    background-color: var(--gray-900);
+    border-color: var(--gray-700);
+    color: var(--gray-50);
+}
+
+.dark .fi-quran-public__surah-card:hover {
+    background-color: var(--gray-800);
+    border-color: var(--primary-400);
+}
+
+.dark .fi-quran-public__surah-meta {
+    color: var(--gray-400);
+}
+
+.dark .fi-quran-public__surah-name {
+    color: var(--gray-300);
+}
+
+.dark .fi-quran-public__provider-switcher {
+    border-color: rgb(255 255 255 / 10%);
+}
+
+@media (max-width: 639px) {
+    .fi-quran-public__surah-card {
+        gap: 0.75rem;
+        padding: 0.875rem 1rem;
+    }
+
+    .fi-quran-public__surah-name {
+        font-size: 1.25rem;
+        max-width: 4.5rem;
+    }
 }
 
 .dark .fi-quran-widget__navigation,

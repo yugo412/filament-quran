@@ -8,5 +8,12 @@ return [
 
     'page' => [
         'register_navigation' => env('FILAMENT_QURAN_PAGE_REGISTER_NAVIGATION', true),
+        'display_mode' => env('FILAMENT_QURAN_PAGE_DISPLAY_MODE', 'all'),
+    ],
+
+    'panel' => [
+        'id' => env('FILAMENT_QURAN_PANEL_ID', 'quran'),
+        'path' => env('FILAMENT_QURAN_PANEL_PATH', 'quran'),
+        'display_mode' => env('FILAMENT_QURAN_PANEL_DISPLAY_MODE', 'all'),
     ],
 ];

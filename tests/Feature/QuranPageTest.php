@@ -14,3 +14,9 @@ it('can hide the Quran page from navigation without disabling the page', functio
     expect(QuranPage::shouldRegisterNavigation())->toBeFalse()
         ->and(QuranPage::getNavigationLabel())->toBeString();
 });
+
+it('displays all verses on the standalone Quran page by default', function (): void {
+    config()->set('filament-quran.page.display_mode', 'all');
+
+    expect((new QuranPage)->isDisplayingAllVerses())->toBeTrue();
+});

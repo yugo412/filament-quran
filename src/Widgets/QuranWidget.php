@@ -13,8 +13,18 @@ final class QuranWidget extends Widget
 
     protected int|string|array $columnSpan = 'full';
 
+    public function mount(): void
+    {
+        $this->initializeQuran();
+    }
+
     public function getColumnSpan(): int|string|array
     {
         return config('filament-quran.widget.column_span', 'full');
+    }
+
+    protected function getQuranDisplayMode(): string
+    {
+        return (string) config('filament-quran.widget.display_mode', 'single');
     }
 }
