@@ -11,4 +11,6 @@ return [
     'verse_number' => 'Verse :number',
     'verse_of' => ':current / :total',
     'attribution' => 'Data provided by',
+    'navigation_label' => 'Quran',
+    'page_title' => 'Quran',
 ];
