@@ -2,23 +2,20 @@
 
 namespace Yugo\FilamentQuran;
 
-use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\ServiceProvider;
 
 final class FilamentQuranServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/quran.php', 'quran');
+        $this->mergeConfigFrom(__DIR__.'/../config/filament-quran.php', 'filament-quran');
 
-        $this->app->singleton('quran', fn (Container $app): QuranManager => new QuranManager($app));
-        $this->app->alias('quran', QuranManager::class);
     }
 
     public function boot(): void
     {
         $this->publishes([
-            __DIR__.'/../config/quran.php' => config_path('quran.php'),
+            __DIR__.'/../config/filament-quran.php' => config_path('filament-quran.php'),
         ], 'filament-quran-config');
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'filament-quran');

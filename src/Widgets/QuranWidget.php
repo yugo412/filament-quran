@@ -4,9 +4,9 @@ namespace Yugo\FilamentQuran\Widgets;
 
 use Filament\Widgets\Widget;
 use Throwable;
-use Yugo\FilamentQuran\Data\SurahSummary;
-use Yugo\FilamentQuran\Data\Verse;
-use Yugo\FilamentQuran\Facades\Quran;
+use Yugo\Quran\Data\SurahSummary;
+use Yugo\Quran\Data\Verse;
+use Yugo\Quran\Facades\Quran;
 
 final class QuranWidget extends Widget
 {
@@ -32,7 +32,7 @@ final class QuranWidget extends Widget
 
     public function getColumnSpan(): int|string|array
     {
-        return config('quran.widget.column_span', 'full');
+        return config('filament-quran.widget.column_span', 'full');
     }
 
     public function mount(): void
@@ -99,7 +99,7 @@ final class QuranWidget extends Widget
 
     public function isDisplayingAllVerses(): bool
     {
-        return config('quran.widget.display_mode', 'single') === 'all';
+        return config('filament-quran.widget.display_mode', 'single') === 'all';
     }
 
     public function previousVerse(): void

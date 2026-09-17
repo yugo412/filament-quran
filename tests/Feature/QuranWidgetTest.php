@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Http;
 use Yugo\FilamentQuran\Widgets\QuranWidget;
 
+beforeEach(function (): void {
+    config()->set('quran.provider', 'equran');
+});
+
 it('moves to the next surah after the last verse', function (): void {
     config()->set('quran.cache_store', 'array');
 
@@ -55,7 +59,7 @@ it('moves to the next surah after the last verse', function (): void {
 });
 
 it('supports displaying every verse in a surah', function (): void {
-    config()->set('quran.widget.display_mode', 'all');
+    config()->set('filament-quran.widget.display_mode', 'all');
 
     expect((new QuranWidget)->isDisplayingAllVerses())->toBeTrue();
 });
