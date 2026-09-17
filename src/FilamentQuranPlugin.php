@@ -5,13 +5,14 @@ namespace Yugo\FilamentQuran;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\Support\Assets\Css;
+use Yugo\FilamentQuran\Pages\QuranPage;
 use Yugo\FilamentQuran\Widgets\QuranWidget;
 
 final class FilamentQuranPlugin implements Plugin
 {
     public static function make(): static
     {
-        return app(static::class);
+        return app(self::class);
     }
 
     public function getId(): string
@@ -27,6 +28,10 @@ final class FilamentQuranPlugin implements Plugin
 
         $panel->widgets([
             QuranWidget::class,
+        ]);
+
+        $panel->pages([
+            QuranPage::class,
         ]);
     }
 
