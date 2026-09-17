@@ -9,7 +9,7 @@ use Yugo\FilamentQuran\Data\Surah;
 use Yugo\FilamentQuran\Data\SurahSummary;
 use Yugo\FilamentQuran\Data\Verse;
 
-final class EquranProvider implements QuranProvider, QuranCatalog
+final class EquranProvider implements QuranCatalog, QuranProvider
 {
     public function __construct(
         private readonly HttpFactory $http,
@@ -47,6 +47,17 @@ final class EquranProvider implements QuranProvider, QuranCatalog
             ),
             revelationPlace: $response['tempatTurun'] ?? null,
         );
+    }
+
+    /**
+     * @return array{label: string, url: string}
+     */
+    public function getAttribution(): array
+    {
+        return [
+            'label' => 'eQuran.id',
+            'url' => 'https://equran.id',
+        ];
     }
 
     /**

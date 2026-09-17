@@ -10,12 +10,13 @@ use Yugo\FilamentQuran\Contracts\QuranProvider;
 use Yugo\FilamentQuran\Data\Surah;
 use Yugo\FilamentQuran\Data\SurahSummary;
 use Yugo\FilamentQuran\Providers\EquranProvider;
+use Yugo\FilamentQuran\Providers\UmmahApiProvider;
 
 final class QuranManager extends Manager
 {
     public function getDefaultDriver(): string
     {
-        return (string) $this->config->get('quran.provider', 'equran');
+        return (string) $this->config->get('quran.provider', 'ummahapi');
     }
 
     public function createEquranDriver(): QuranProvider
@@ -25,6 +26,17 @@ final class QuranManager extends Manager
         return new EquranProvider(
             http: $this->container->make(HttpFactory::class),
             baseUrl: (string) ($config['base_url'] ?? 'https://equran.id'),
+            timeout: (int) ($config['timeout'] ?? 10),
+        );
+    }
+
+    public function createUmmahapiDriver(): QuranProvider
+    {
+        $config = $this->config->get('quran.providers.ummahapi', []);
+
+        return new UmmahApiProvider(
+            http: $this->container->make(HttpFactory::class),
+            baseUrl: (string) ($config['base_url'] ?? 'https://ummahapi.com'),
             timeout: (int) ($config['timeout'] ?? 10),
         );
     }
@@ -42,6 +54,17 @@ final class QuranManager extends Manager
             (int) $this->config->get('quran.cache_ttl', 604800),
             fn (): Surah => $provider->getSurah($number),
         );
+    }
+
+    /**
+     * @return array{label: string, url: string}
+     */
+    public function attribution(): array
+    {
+        /** @var QuranProvider $provider */
+        $provider = $this->driver();
+
+        return $provider->getAttribution();
     }
 
     /**

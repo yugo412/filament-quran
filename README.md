@@ -46,7 +46,7 @@ The plugin adds the Quran widget to the configured Filament dashboard.
 The package reads its provider settings from environment variables:
 
 ```env
-QURAN_PROVIDER=equran
+QURAN_PROVIDER=ummahapi
 QURAN_CACHE_STORE=
 QURAN_CACHE_TTL=604800
 EQURAN_BASE_URL=https://equran.id
@@ -100,13 +100,11 @@ Use `verse(int $number)` to select a verse from the loaded surah without making 
 
 ### eQuran.id
 
-The package currently includes the `equran` provider. It fetches surah data from:
+Data provided by [eQuran.id](https://equran.id).
 
-```text
-https://equran.id/api/v2/surat/{surah-number}
-```
+### UmmahAPI
 
-The provider normalizes the eQuran.id response into the package's `Surah` and `Verse` objects.
+Data provided by [UmmahAPI](https://ummahapi.com).
 
 ### Custom providers
 
@@ -129,4 +127,9 @@ A provider must implement:
 
 ```php
 public function getSurah(int $number): Surah;
+
+/**
+ * @return array{label: string, url: string}
+ */
+public function getAttribution(): array;
 ```

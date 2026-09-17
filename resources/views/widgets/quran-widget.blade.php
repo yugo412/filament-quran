@@ -127,12 +127,11 @@
                 @endif
 
                 @php
-                    $providerUrl = config('quran.providers.'.config('quran.provider').'.base_url');
-                    $providerName = parse_url($providerUrl, PHP_URL_HOST) ?: $providerUrl;
+                    $attribution = \Yugo\FilamentQuran\Facades\Quran::attribution();
                 @endphp
                 <p class="fi-quran-widget__attribution">
                     {{ __('filament-quran::quran.attribution') }}
-                    <a href="{{ $providerUrl }}" target="_blank" rel="noreferrer noopener">{{ $providerName }}</a>
+                    <a href="{{ $attribution['url'] }}" target="_blank" rel="noreferrer noopener">{{ $attribution['label'] }}</a>
                 </p>
             </div>
         @else
