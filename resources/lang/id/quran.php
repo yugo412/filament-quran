@@ -11,4 +11,6 @@ return [
     'verse_number' => 'Ayat :number',
     'verse_of' => ':current / :total',
     'attribution' => 'Data disediakan oleh',
+    'navigation_label' => 'Al-Qur’an',
+    'page_title' => 'Al-Qur’an',
 ];

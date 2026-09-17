@@ -1,5 +1,5 @@
-<x-filament-widgets::widget>
+<x-filament-panels::page>
     <x-filament::section>
         @include('filament-quran::partials.quran-reader')
     </x-filament::section>
-</x-filament-widgets::widget>
+</x-filament-panels::page>
