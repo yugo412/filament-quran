@@ -44,21 +44,33 @@
 
                 <div class="fi-quran-widget__navigation-current">
                     @if ($surahOptions)
-                        <label class="sr-only" for="quran-surah-select-{{ $this->getId() }}">
-                            {{ __('filament-quran::quran.select_surah') }}
-                        </label>
-                        <select
-                            id="quran-surah-select-{{ $this->getId() }}"
-                            class="fi-quran-widget__surah-select"
-                            wire:model.live="surahNumber"
-                            wire:change="selectSurah"
-                        >
-                            @foreach ($surahOptions as $option)
-                                <option value="{{ $option['number'] }}">
-                                    {{ $option['number'] }}. {{ $option['latinName'] }} ({{ $option['name'] }})
-                                </option>
-                            @endforeach
-                        </select>
+                        <x-filament::dropdown placement="bottom" width="sm" max-height="20rem">
+                            <x-slot name="trigger">
+                                <x-filament::button
+                                    color="gray"
+                                    size="sm"
+                                    :icon="\Filament\Support\Icons\Heroicon::ChevronDown"
+                                    icon-position="after"
+                                    id="quran-surah-select-{{ $this->getId() }}"
+                                    :aria-label="__('filament-quran::quran.select_surah')"
+                                >
+                                    {{ $surah['number'] }}. {{ $surah['latinName'] }} ({{ $surah['name'] }})
+                                </x-filament::button>
+                            </x-slot>
+
+                            <x-filament::dropdown.list>
+                                @foreach ($surahOptions as $option)
+                                    <x-filament::dropdown.list.item
+                                        tag="button"
+                                        wire:click="goTo({{ $option['number'] }}, 1)"
+                                        x-on:click="close()"
+                                        :color="$option['number'] === $surahNumber ? 'primary' : 'gray'"
+                                    >
+                                        {{ $option['number'] }}. {{ $option['latinName'] }} ({{ $option['name'] }})
+                                    </x-filament::dropdown.list.item>
+                                @endforeach
+                            </x-filament::dropdown.list>
+                        </x-filament::dropdown>
                     @else
                         <span>{{ $surah['latinName'] }}</span>
                     @endif

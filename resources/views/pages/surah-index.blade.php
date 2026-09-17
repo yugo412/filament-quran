@@ -5,24 +5,35 @@
                 $panel = \Filament\Facades\Filament::getCurrentOrDefaultPanel();
                 $locale = request()->route('locale') ?? app()->getLocale();
                 $currentProvider = request()->route('provider') ?? config('quran.provider');
+                $currentProviderLabel = collect($this->providerOptions)->firstWhere('value', $currentProvider)['label'] ?? $currentProvider;
             @endphp
             <div class="fi-quran-widget__navigation fi-quran-public__provider-switcher">
                 <div class="fi-quran-widget__navigation-current">
-                    <span>{{ __('filament-quran::quran.select_provider') }}</span>
-                    <select
-                        class="fi-quran-widget__surah-select"
-                        aria-label="{{ __('filament-quran::quran.select_provider') }}"
-                        onchange="window.location.href = this.value"
-                    >
-                        @foreach ($this->providerOptions as $provider)
-                            <option
-                                value="{{ route($panel->generateRouteName('pages.provider-index'), ['provider' => $provider['value'], 'locale' => $locale]) }}"
-                                @selected($provider['value'] === $currentProvider)
+                    <x-filament::dropdown placement="bottom" width="xs">
+                        <x-slot name="trigger">
+                            <x-filament::button
+                                color="gray"
+                                size="sm"
+                                :icon="\Filament\Support\Icons\Heroicon::ChevronDown"
+                                icon-position="after"
+                                :aria-label="__('filament-quran::quran.select_provider')"
                             >
-                                {{ $provider['label'] }}
-                            </option>
-                        @endforeach
-                    </select>
+                                {{ $currentProviderLabel }}
+                            </x-filament::button>
+                        </x-slot>
+
+                        <x-filament::dropdown.list>
+                            @foreach ($this->providerOptions as $provider)
+                                <x-filament::dropdown.list.item
+                                    tag="a"
+                                    href="{{ route($panel->generateRouteName('pages.provider-index'), ['provider' => $provider['value'], 'locale' => $locale]) }}"
+                                    :color="$provider['value'] === $currentProvider ? 'primary' : 'gray'"
+                                >
+                                    {{ $provider['label'] }}
+                                </x-filament::dropdown.list.item>
+                            @endforeach
+                        </x-filament::dropdown.list>
+                    </x-filament::dropdown>
                 </div>
             </div>
         @endif

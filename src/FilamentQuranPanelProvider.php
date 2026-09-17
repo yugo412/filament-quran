@@ -6,6 +6,7 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Assets\Css;
 use Filament\View\PanelsRenderHook;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\HtmlString;
 use Yugo\FilamentQuran\Http\Middleware\SetQuranLocale;
@@ -21,7 +22,7 @@ final class FilamentQuranPanelProvider extends PanelProvider
             ->path(trim((string) config('filament-quran.panel.path', 'quran'), '/'))
             ->brandName(__('filament-quran::quran.panel_brand'))
             ->navigation(false)
-            ->topbar(false)
+            ->topbar(true)
             ->maxContentWidth('full')
             ->middleware([SetQuranLocale::class])
             ->routes(function (): void {
@@ -93,6 +94,10 @@ final class FilamentQuranPanelProvider extends PanelProvider
                         }
                     </style>
                     HTML),
+            )
+            ->renderHook(
+                PanelsRenderHook::TOPBAR_END,
+                fn (): View => view('filament-quran::components.theme-switcher'),
             )
             ->assets([
                 Css::make('quran', __DIR__.'/../resources/css/quran.css'),
