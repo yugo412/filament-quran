@@ -1,0 +1,188 @@
+.fi-quran-widget {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.fi-quran-widget__header {
+    text-align: center;
+}
+
+.fi-quran-widget__navigation,
+.fi-quran-widget__verse-navigation {
+    align-items: center;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: space-between;
+}
+
+.fi-quran-widget__navigation {
+    border-bottom: 1px solid rgb(229 231 235);
+    padding-bottom: 1rem;
+}
+
+.fi-quran-widget__navigation-button {
+    align-items: center;
+    border-radius: 0.5rem;
+    color: var(--primary-600);
+    display: inline-flex;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 0.75rem;
+    transition: background-color 150ms ease, color 150ms ease;
+}
+
+.fi-quran-widget__navigation-button:hover:not(:disabled) {
+    background-color: var(--primary-50);
+}
+
+.fi-quran-widget__navigation-button:focus-visible {
+    outline: 2px solid var(--primary-600);
+    outline-offset: 2px;
+}
+
+.fi-quran-widget__navigation-button:disabled {
+    color: rgb(156 163 175);
+    cursor: not-allowed;
+}
+
+.fi-quran-widget__navigation-current {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.875rem;
+    gap: 0.5rem;
+    justify-content: center;
+    min-width: 0;
+    text-align: center;
+}
+
+.fi-quran-widget__surah-select {
+    background-color: transparent;
+    border: 0;
+    border-radius: 0.5rem;
+    color: inherit;
+    cursor: pointer;
+    font-size: 0.875rem;
+    min-height: 2.75rem;
+    min-width: 10rem;
+    padding: 0.5rem 2rem 0.5rem 0.75rem;
+}
+
+.fi-quran-widget__surah-select:focus-visible {
+    outline: 2px solid var(--primary-600);
+    outline-offset: 2px;
+}
+
+.fi-quran-widget__verses {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.fi-quran-widget__verse + .fi-quran-widget__verse {
+    border-top: 1px solid rgb(229 231 235);
+    padding-top: 2rem;
+}
+
+.fi-quran-widget__verse-navigation {
+    border-top: 1px solid rgb(229 231 235);
+    padding-top: 1.25rem;
+}
+
+.fi-quran-widget__attribution {
+    color: rgb(107 114 128);
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+.fi-quran-widget__attribution a {
+    color: var(--primary-600);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.fi-quran-widget__surah-name {
+    color: rgb(75 85 99);
+    font-size: 1.875rem;
+    line-height: 1.25;
+}
+
+.fi-quran-widget__arabic-row {
+    align-items: flex-start;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+}
+
+.fi-quran-widget__arabic {
+    direction: rtl;
+    font-size: 2.25rem;
+    line-height: 2.1;
+    min-width: 0;
+    text-align: right;
+}
+
+.fi-quran-widget__latin {
+    color: var(--primary-600);
+    font-size: 1rem;
+    line-height: 1.625;
+}
+
+.fi-quran-widget__translation {
+    color: rgb(55 65 81);
+    font-size: 1.125rem;
+    line-height: 1.625;
+}
+
+@media (min-width: 640px) {
+    .fi-quran-widget__arabic {
+        font-size: 2.25rem;
+    }
+}
+
+.dark .fi-quran-widget__surah-name {
+    color: rgb(229 231 235);
+}
+
+.dark .fi-quran-widget__latin {
+    color: var(--primary-400);
+}
+
+.dark .fi-quran-widget__translation {
+    color: rgb(209 213 219);
+}
+
+.dark .fi-quran-widget__attribution {
+    color: rgb(156 163 175);
+}
+
+.dark .fi-quran-widget__attribution a {
+    color: var(--primary-400);
+}
+
+.dark .fi-quran-widget__navigation,
+.dark .fi-quran-widget__verse + .fi-quran-widget__verse,
+.dark .fi-quran-widget__verse-navigation {
+    border-color: rgb(255 255 255 / 10%);
+}
+
+.dark .fi-quran-widget__navigation-button:hover:not(:disabled) {
+    background-color: color-mix(in srgb, var(--primary-500) 15%, transparent);
+}
+
+@media (max-width: 639px) {
+    .fi-quran-widget__navigation-button {
+        padding-inline: 0.5rem;
+    }
+
+    .fi-quran-widget__verse-navigation {
+        flex-wrap: wrap;
+    }
+
+    .fi-quran-widget__verse-navigation > span {
+        order: -1;
+        text-align: center;
+        width: 100%;
+    }
+}
